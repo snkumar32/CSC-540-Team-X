@@ -1,4 +1,4 @@
-package wolfPub.ui;
+package wolfPub.menu;
 
 public class MainMenu {
 }
