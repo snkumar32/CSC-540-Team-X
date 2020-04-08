@@ -13,7 +13,7 @@ public class Main {
         do {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             try {
-                StaffUI.staffUI(br);
+                DistributorUI.distributorUI(br);
             } catch (IOException e) {
 
             }
