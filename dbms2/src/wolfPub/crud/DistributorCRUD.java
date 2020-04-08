@@ -82,7 +82,7 @@ public class DistributorCRUD {
         }
     }
 
-    public static Boolean deleteStaff(Integer id) {
+    public static Boolean deleteDistributor(Integer id) {
         try {
             Connection conn = DbConnection.getConnection();
             Statement st = conn.createStatement();

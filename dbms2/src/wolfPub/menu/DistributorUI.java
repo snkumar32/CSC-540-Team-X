@@ -42,7 +42,7 @@ public class DistributorUI {
                 System.out.println("New Distributor ID is");
                 System.out.println(DistributorCRUD.insertDistributor(did,name,type,phone,balance,contact_person,street,city));
                 return;
-            case 4:
+            case 3:
 
                 System.out.println("Enter | separated Integer DID, String Name, String Type,String phone,float balance,String contact Person, String street and String City");
                 args = reader.readLine().split("[|]");

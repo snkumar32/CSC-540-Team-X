@@ -42,7 +42,7 @@ public class Distributor {
 
     public String toString()
     {
-        return "STAFF (id=" + this.DistributorID + ", STAFF NAME=" + this.Name + ", STAFF TYPE=" + this.DType +  ", PHONE =" + this.Phone  + ", BALANCE=" + this.Balance +", CONTACT=" + this.Contact_Person +", STREET=" + this.Street + ", CITY=" + this.City +")";
+        return "DISTRIBUTOR (id=" + this.DistributorID + ", DISTRIBUTOR NAME=" + this.Name + ", DISTRIBUTOR TYPE=" + this.DType +  ", PHONE =" + this.Phone  + ", BALANCE=" + this.Balance +", CONTACT=" + this.Contact_Person +", STREET=" + this.Street + ", CITY=" + this.City +")";
 
     }
 
