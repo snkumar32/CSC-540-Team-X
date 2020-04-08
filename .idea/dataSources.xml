@@ -7,5 +7,11 @@
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mariadb://classdb2.csc.ncsu.edu:3306</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="skumar32@classdb2.csc.ncsu.edu" uuid="6651cb97-f304-4043-88e1-caf144ded191">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://classdb2.csc.ncsu.edu:3306/skumar32</jdbc-url>
+    </data-source>
   </component>
 </project>
