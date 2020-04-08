@@ -2,33 +2,24 @@ package wolfPub.menu;
 
 import wolfPub.connection.DbConnection;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        try {
-            Class.forName("org.mariadb.jdbc.Driver");
-            Connection connection = DbConnection.getConnection();
-            Statement statement = null;
-            ResultSet result = null;
+        do {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             try {
-                statement = connection.createStatement();
-                result = statement.executeQuery("SELECT * FROM PUBLICATION");
+                StaffUI.staffUI(br);
+            } catch (IOException e) {
 
-                while (result.next()) {
-                    String name = result.getString("PID");
-                    String title = result.getString("TITLE");
-                    System.out.println(name + "  " + title);
-                }
-
-
-            } catch (Throwable oops) {
-                oops.printStackTrace();
             }
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        }while(true);
     }
+
+
 }
 

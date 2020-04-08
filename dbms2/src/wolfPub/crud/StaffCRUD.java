@@ -22,7 +22,7 @@ public class StaffCRUD {
             ResultSet rs = st.executeQuery("Select * from STAFF");
             ArrayList<Staff> list = new ArrayList<>();
             while (rs.next()) {
-                Staff p = new Staff(Integer.valueOf(rs.getInt("STAFFID")), rs.getString("NAME"), rs.getString("TYPE"));
+                Staff p = new Staff(Integer.valueOf(rs.getInt("STAFFID")), rs.getString("NAME"), rs.getString("TYPE"), Integer.valueOf(rs.getString("AGE")), rs.getString("GENDER"));
                 list.add(p);
             }
             return list;
@@ -37,10 +37,10 @@ public class StaffCRUD {
         try {
             Connection conn = DbConnection.getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("Select * from STAFF where STAFFID = staffId");
+            ResultSet rs = st.executeQuery("Select * from STAFF where STAFFID = " +  staffId);
             ArrayList<Staff> list = new ArrayList<>();
             while (rs.next()) {
-                Staff p = new Staff(Integer.valueOf(rs.getInt("STAFFID")), rs.getString("NAME"), rs.getString("TYPE"));
+                Staff p = new Staff(Integer.valueOf(rs.getInt("STAFFID")), rs.getString("NAME"), rs.getString("TYPE"),Integer.valueOf(rs.getString("AGE")), rs.getString("GENDER"));
                 list.add(p);
             }
             return list;
@@ -52,16 +52,16 @@ public class StaffCRUD {
 
 
 
-    public static Integer insertStaff(Integer STAFFID, String NAME, String TYPE) {
+    public static Integer insertStaff(Integer id, String NAME, String TYPE, Integer AGE, String GENDER) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "insert into STAFF values (?,?,?)";
+            String query = "insert into STAFF(STAFFID, NAME, TYPE, AGE, GENDER ) values (?,?,?,?,?)";
             PreparedStatement st = conn.prepareStatement(query);
-            st.setInt(1, STAFFID);
+            st.setInt(1, id);
             st.setString(2, NAME);
             st.setString(3, TYPE);
-
-
+            st.setInt(4, AGE);
+            st.setString(5, GENDER);
             st.executeUpdate();
             ResultSet rs = st.executeQuery("select STAFFID from STAFF");
             int staff_id = 0;
@@ -75,13 +75,15 @@ public class StaffCRUD {
     }
 
 
-    public static Boolean updateStaff(Integer id, String Name, String type) {
+    public static Boolean updateStaff(Integer id, String Name, String type, Integer age, String gender) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "Update STAFF set NAME=?, TYPE=? where STAFFID = id?";
+            String query = "Update STAFF set NAME=?, TYPE=?, AGE=?, GENDER=? where STAFFID =" + id;
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, Name);
             st.setString(2, type);
+            st.setInt(3, age);
+            st.setString(4, gender);
 
             st.executeUpdate();
             return Boolean.valueOf(true);
@@ -102,11 +104,6 @@ public class StaffCRUD {
             return Boolean.valueOf(false);
         }
     }
-
-
-
-
-
 
 }
 

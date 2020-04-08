@@ -9,8 +9,8 @@ import wolfPub.crud.StaffCRUD;
 
 public class StaffUI {
     public static void staffUI(BufferedReader reader) throws NumberFormatException, IOException {
-        Integer id;
-        String name, type;
+        Integer id, age;
+        String name, type, gender;
 
         String[] args;
         System.out.println("1.viewAllStaff");
@@ -41,18 +41,26 @@ public class StaffUI {
                 id = Integer.valueOf(Integer.parseInt(args[0]));
                 name = args[1];
                 type = args[2];
+                age = Integer.valueOf(Integer.parseInt(args[3]));
+                gender = args[4];
+
+
 
                 System.out.println("New staffId is");
-                System.out.println(StaffCRUD.insertStaff(id,name,type));
+                System.out.println(StaffCRUD.insertStaff(id,name,type,age,gender));
                 return;
             case 4:
 
-                System.out.println("Enter | separated Integer StaffID, String Name, String Type");
+                System.out.println("Enter | separated Integer StaffID, String Name, String Type, Integer age, String Gender ");
                 args = reader.readLine().split("[|]");
                 id = Integer.valueOf(Integer.parseInt(args[0]));
                 name = args[1];
                 type = args[2];
-                if (StaffCRUD.updateStaff(id, name, type).booleanValue()) {
+                age = Integer.valueOf(Integer.parseInt(args[3]));
+                gender =  args[4];
+
+
+                if (StaffCRUD.updateStaff(id, name, type, age, gender).booleanValue()) {
                     System.out.println("Operation Successful");
                 } else {
                     System.out.println("Operation Failed");
