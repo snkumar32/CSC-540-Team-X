@@ -43,7 +43,7 @@ public class ChapterCRUD {
             st.setInt(2, ChapterID);
             st.setString(3, CTitle);
             st.executeUpdate();
-            ResultSet rs = st.executeQuery("select CHAPTERID from CHAPTER"); //Is this for displaying data being inserted or not
+            ResultSet rs = st.executeQuery("select CHAPTERID from CHAPTER");
             int chapter_id = 0;
             while (rs.next())
                 chapter_id = rs.getInt("CHAPTERID");
@@ -58,7 +58,7 @@ public class ChapterCRUD {
     public static Boolean updateChapter(Integer PID, Integer ChapterID, String CTitle) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "Update CHAPTER set CTITLE=? where CHAPTERID=" + ChapterID;
+            String query = "Update CHAPTER set CTITLE=? where CHAPTERID=" + ChapterID + "and PID=" + PID;
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, CTitle);
             st.executeUpdate();
@@ -69,11 +69,11 @@ public class ChapterCRUD {
         }
     }
 
-    public static Boolean deleteChapter(Integer ChapterID) {
+    public static Boolean deleteChapter(Integer PID, Integer ChapterID) {
         try {
             Connection conn = DbConnection.getConnection();
             Statement st = conn.createStatement();
-            st.executeUpdate("DELETE FROM CHAPTER WHERE CHAPTERID= " + ChapterID);
+            st.executeUpdate("DELETE FROM CHAPTER WHERE CHAPTERID= " + ChapterID + "and PID=" + PID);
             return Boolean.valueOf(true);
         } catch (SQLException ex) {
             ex.printStackTrace();

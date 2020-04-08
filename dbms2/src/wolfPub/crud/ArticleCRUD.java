@@ -59,7 +59,7 @@ public class ArticleCRUD {
     public static Boolean updateArticle(Integer PID, Integer ArticleID, String Text) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "Update ARTICLE set TEXT=? where ARTICLEID=" + ArticleID;
+            String query = "Update ARTICLE set TEXT=? where ARTICLEID=" + ArticleID + "and PID=" + PID;
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, Text);
             st.executeUpdate();
@@ -70,11 +70,11 @@ public class ArticleCRUD {
         }
     }
 
-    public static Boolean deleteArticle(Integer ArticleID) {
+    public static Boolean deleteArticle(Integer PID, Integer ArticleID) {
         try {
             Connection conn = DbConnection.getConnection();
             Statement st = conn.createStatement();
-            st.executeUpdate("DELETE FROM ARTICLE WHERE ARTICLEID= " + ArticleID);
+            st.executeUpdate("DELETE FROM ARTICLE WHERE ARTICLEID= " + ArticleID + "and PID=" + PID);
             return Boolean.valueOf(true);
         } catch (SQLException ex) {
             ex.printStackTrace();
