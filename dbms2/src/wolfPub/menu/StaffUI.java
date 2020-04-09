@@ -44,13 +44,10 @@ public class StaffUI {
                 age = Integer.valueOf(Integer.parseInt(args[3]));
                 gender = args[4];
 
-
-
-                System.out.println("New staffId is");
+                  System.out.println("New staffId is");
                 System.out.println(StaffCRUD.insertStaff(id,name,type,age,gender));
                 return;
             case 4:
-
                 System.out.println("Enter | separated Integer StaffID, String Name, String Type, Integer age, String Gender ");
                 args = reader.readLine().split("[|]");
                 id = Integer.valueOf(Integer.parseInt(args[0]));
