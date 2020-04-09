@@ -93,7 +93,21 @@ public class DistributorCRUD {
             return Boolean.valueOf(false);
         }
     }
+    public static Boolean updateDistributorBalance(Integer did, float balance) {
+        try {
+            Connection conn = DbConnection.getConnection();
+            String query = "Update DISTRIBUTOR set  BALANCE=? where DID =" + did;
+            PreparedStatement st = conn.prepareStatement(query);
 
+            st.setFloat(1, balance);
+
+            st.executeUpdate();
+            return Boolean.valueOf(true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Boolean.valueOf(false);
+        }
+    }
 
 
 }

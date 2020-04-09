@@ -17,8 +17,7 @@ public class DistributorOperations {
         System.out.println("1.Input Orders");
         System.out.println("2.Bill a Distributor for Order");
         System.out.println("3.Change Balance of Distributor");
-        System.out.println("4.deleteDistributor");
-        System.out.println("5.exit");
+        System.out.println("4.exit");
         String input = reader.readLine();
         switch (Integer.parseInt(input)) {
             case 1:
@@ -48,9 +47,23 @@ public class DistributorOperations {
 
             case 2:
 
+                // insertion required
+
+            case 3:
+                System.out.println("Enter | separated Integer DID and Balance for updation");
+                args = reader.readLine().split("[|]");
+                Integer did1 = Integer.valueOf(Integer.parseInt(args[0]));
+                Float balance = Float.valueOf(Float.parseFloat(args[1]));
+                if(DistributorCRUD.updateDistributorBalance(did1,balance)){
+                    System.out.println("Operation Successful");
+                } else {
+                    System.out.println("Operation Failed");
+                }
 
             default:
                 throw new IllegalStateException("Unexpected value: " + Integer.parseInt(input));
+                }
+
+
         }
     }
-}
