@@ -54,8 +54,6 @@ public class DistributorUI {
                 street = args[6];
                 city = args[7];
                 contact_person = args[5];
-
-
                 if (DistributorCRUD.updateDistributor(did, name, type, phone, balance,contact_person,street,city).booleanValue()) {
                     System.out.println("Operation Successful");
                 } else {

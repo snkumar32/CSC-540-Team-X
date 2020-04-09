@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import wolfPub.dbclasses.StaffPayment;
 
-public class PaymentOperations {
+public class   PaymentOperations {
 
     public static ArrayList<StaffPayment> viewStaffPaymnet() {
         try {
