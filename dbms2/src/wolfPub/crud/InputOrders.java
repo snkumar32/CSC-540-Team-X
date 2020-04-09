@@ -26,7 +26,9 @@ public class InputOrders {
             ResultSet rs = st.executeQuery("select ORDERID from ORDERS");
             int order_id = 0;
             while (rs.next())
-                order_id = rs.getInt("STAFFID");
+                order_id = rs.getInt("ORDERID");
+            conn.commit();
+            System.out.println(order_id);
             return Integer.valueOf(order_id);
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -48,7 +50,9 @@ public class InputOrders {
                 ResultSet rs = st.executeQuery("select ORDERID from PLACES");
                 int order_id = 0;
                 while (rs.next())
-                    order_id = rs.getInt("STAFFID");
+                    order_id = rs.getInt("ORDERID");
+                conn.commit();
+                System.out.println(order_id);
                 return Integer.valueOf(order_id);
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -68,7 +72,9 @@ public class InputOrders {
             ResultSet rs = st.executeQuery("select ORDERID from PLACES");
             int order_id = 0;
             while (rs.next())
-                order_id = rs.getInt("STAFFID");
+                order_id = rs.getInt("ORDERID");
+            conn.commit();
+            System.out.println(order_id);
             return Integer.valueOf(order_id);
         } catch (SQLException ex) {
             ex.printStackTrace();

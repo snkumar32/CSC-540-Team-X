@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class DistributorOperations {
 
-    public static void distributorUI(BufferedReader reader) throws NumberFormatException, IOException {
+    public static void distributorOperationsUI(BufferedReader reader) throws NumberFormatException, IOException {
         Integer did, orderid;
         Float price, shipping_cost, total_pay;
         String placement_date, deadline_date;
@@ -40,9 +40,10 @@ public class DistributorOperations {
 
 
 
-                System.out.println(InputOrders.insertOrder(orderid,deadline_date,placement_date,shipping_cost,price,total_pay));
-                System.out.println(InputOrders.insertPlaces(orderid,did));
-                System.out.println(InputOrders.insertConsistsOf(orderid,pid,noc));
+                InputOrders.insertOrder(orderid,deadline_date,placement_date,shipping_cost,price,total_pay);
+
+                InputOrders.insertPlaces(orderid,did);
+                InputOrders.insertConsistsOf(orderid,pid,noc);
                 return;
 
             case 2:

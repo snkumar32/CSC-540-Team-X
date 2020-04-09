@@ -13,7 +13,7 @@ public class Main {
         do {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             try {
-                ReportUI.reportUI(br);
+                DistributorOperations.distributorOperationsUI(br);
             } catch (IOException e) {
 
             }
