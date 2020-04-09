@@ -12,9 +12,6 @@ import wolfPub.connection.*;
 
 
 public class StaffCRUD {
-
-
-
     public static ArrayList<Staff> viewStaff() {
         try {
             Connection conn = DbConnection.getConnection();
@@ -104,6 +101,5 @@ public class StaffCRUD {
             return Boolean.valueOf(false);
         }
     }
-
 }
 
