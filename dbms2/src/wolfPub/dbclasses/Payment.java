@@ -13,6 +13,11 @@ public class Payment {
         this.Salary = Salary;
     }
 
+    public Payment(Float Salary)
+    {
+        this.Salary = Salary;
+    }
+
     public Integer getStaffID() { return this.StaffID; }
     public String getPDate() { return this.PDate; }
     public Float getSalary() { return this.Salary; }
@@ -20,5 +25,10 @@ public class Payment {
     public void setStaffID(Integer StaffID) { this.StaffID = StaffID; }
     public void setPDate(String PDate) { this.PDate = PDate; }
     public void setSalary(Float Salary) { this.Salary = Salary; }
+
+    public String toString()
+    {
+        return "PAYMENT (STAFF ID=" + this.StaffID + ", STAFF PAY DATE=" + this.PDate + ", STAFF SALARY=" + this.Salary + ")";
+    }
 
 }
