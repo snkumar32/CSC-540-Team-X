@@ -76,12 +76,12 @@ public class PeriodicPublicationCRUD {
     public static Boolean updatePeriodicPublication(Integer PID, String type, String issuedate, String periodicity) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "Update PERIODICPUBLICATION set TYPE=?, ISSUEDATE=?, PERIODICTY=? where PID =" + PID;
+            String query = "Update PERIODICPUBLICATION set TYPE=?, ISSUEDATE=?, PERIODICITY=? where PID =?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, type);
             st.setString(2, issuedate);
             st.setString(3, periodicity);
-
+            st.setInt(4, PID);
             st.executeUpdate();
             return Boolean.valueOf(true);
         } catch (SQLException e) {

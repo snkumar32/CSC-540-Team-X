@@ -75,12 +75,12 @@ public class PublicationCRUD {
     public static Boolean updatePublication(Integer PID, String topic, String title, String pub_no) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "Update PUBLICATION set TOPIC=?, TITLE=?, PUB_NO=? where PUBLICATION =" + PID;
+            String query = "Update PUBLICATION set TOPIC=?, TITLE=?, PUB_NO=? where PID =?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, topic);
             st.setString(2, title);
             st.setString(3, pub_no);
-
+            st.setInt(4,PID);
             st.executeUpdate();
             conn.commit();
             return Boolean.valueOf(true);

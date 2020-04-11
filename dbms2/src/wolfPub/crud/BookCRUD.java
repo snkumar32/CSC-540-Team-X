@@ -76,12 +76,12 @@ public class BookCRUD {
     public static Boolean updateBook(Integer PID, String publicationdate, String isbn, Integer edition) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "Update BOOK set PUBLICATIONDATE=?, ISBN=?, EDITION=? where PID =" + PID;
+            String query = "Update BOOK set PUBLICATIONDATE=?, ISBN=?, EDITION=? where PID =?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, publicationdate);
             st.setString(2, isbn);
             st.setInt(3, edition);
-
+            st.setInt(4, PID);
             st.executeUpdate();
             return Boolean.valueOf(true);
         } catch (SQLException e) {
