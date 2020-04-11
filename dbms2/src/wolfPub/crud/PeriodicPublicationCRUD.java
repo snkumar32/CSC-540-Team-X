@@ -21,7 +21,7 @@ public class PeriodicPublicationCRUD {
             ResultSet rs = st.executeQuery("Select * from PERIODICPUBLICATION");
             ArrayList<PeriodicPublication> list = new ArrayList<>();
             while (rs.next()) {
-                PeriodicPublication p = new PeriodicPublication(Integer.valueOf(rs.getInt("PID")), rs.getString("PPTYPE"), rs.getString("ISSUEDATE"), rs.getString("PERIODICITY"));
+                PeriodicPublication p = new PeriodicPublication(Integer.valueOf(rs.getInt("PID")), rs.getString("TYPE"), rs.getString("ISSUEDATE"), rs.getString("PERIODICITY"));
                 list.add(p);
             }
             return list;
@@ -39,7 +39,7 @@ public class PeriodicPublicationCRUD {
             ResultSet rs = st.executeQuery("Select * from PERIODICPUBLICATION where PID = " +  PID);
             ArrayList<PeriodicPublication> list = new ArrayList<>();
             while (rs.next()) {
-                PeriodicPublication p = new PeriodicPublication(Integer.valueOf(rs.getInt("PID")), rs.getString("PPTYPE"), rs.getString("ISSUEDATE"), rs.getString("PERIODICITY"));
+                PeriodicPublication p = new PeriodicPublication(Integer.valueOf(rs.getInt("PID")), rs.getString("TYPE"), rs.getString("ISSUEDATE"), rs.getString("PERIODICITY"));
                 list.add(p);
             }
             return list;
@@ -51,13 +51,13 @@ public class PeriodicPublicationCRUD {
 
 
 
-    public static Integer insertPeriodicPublication(Integer PID, String pptype, String issuedate, String periodicity) {
+    public static Integer insertPeriodicPublication(Integer PID, String type, String issuedate, String periodicity) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "insert into PERIODICPUBLICATION(PID, PPTYPE, ISSUEDATE, PERIODICITY ) values (?,?,?,?)";
+            String query = "insert into PERIODICPUBLICATION(PID, TYPE, ISSUEDATE, PERIODICITY ) values (?,?,?,?)";
             PreparedStatement st = conn.prepareStatement(query);
             st.setInt(1, PID);
-            st.setString(2, pptype);
+            st.setString(2, type);
             st.setString(3, issuedate);
             st.setString(4, periodicity);
             st.executeUpdate();
@@ -73,12 +73,12 @@ public class PeriodicPublicationCRUD {
     }
 
 
-    public static Boolean updatePeriodicPublication(Integer PID, String pptype, String issuedate, String periodicity) {
+    public static Boolean updatePeriodicPublication(Integer PID, String type, String issuedate, String periodicity) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "Update PERIODICPUBLICATION set PPTYPE=?, ISSUEDATE=?, PERIODICTY=? where PID =" + PID;
+            String query = "Update PERIODICPUBLICATION set TYPE=?, ISSUEDATE=?, PERIODICTY=? where PID =" + PID;
             PreparedStatement st = conn.prepareStatement(query);
-            st.setString(1, pptype);
+            st.setString(1, type);
             st.setString(2, issuedate);
             st.setString(3, periodicity);
 
