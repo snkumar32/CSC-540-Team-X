@@ -18,14 +18,16 @@ public class PublicationUI {
 
         System.out.println("1. Enter Book information");
         System.out.println("2. Enter Periodic Publication information");
-        System.out.println("3. Assign Editors to Publication");
-        System.out.println("4. View Publication based on Editor(Staff ID)");
-        System.out.println("5. Insert Articles");
-        System.out.println("6. Update Articles");
-        System.out.println("7. Delete Articles");
-        System.out.println("8. Insert Chapters");
-        System.out.println("9. Update Chapters");
-        System.out.println("10. Delete Chapters");
+        System.out.println("3. Update Book information");
+        System.out.println("4. Update Periodic Publication information");
+        System.out.println("5. Assign Editors to Publication");
+        System.out.println("6. View Publication based on Editor(Staff ID)");
+        System.out.println("7. Insert Articles");
+        System.out.println("8. Update Articles");
+        System.out.println("9. Delete Articles");
+        System.out.println("10. Insert Chapters");
+        System.out.println("11. Update Chapters");
+        System.out.println("12. Delete Chapters");
 
         String input = reader.readLine();
 
@@ -61,6 +63,37 @@ public class PublicationUI {
                 return;
 
             case 3:
+                System.out.println("Enter | separated Integer PID,String topic,String title, String pub_no,String PublicationDate,String ISBN, Integer Edition");
+                args = reader.readLine().split("[|]");
+                PID = Integer.valueOf(Integer.parseInt(args[0]));
+                topic = args[1];
+                title = args[2];
+                pub_no = args[3];
+                PublicationDate = args[4];
+                ISBN = args[5];
+                Edition = Integer.valueOf(Integer.parseInt(args[6]));
+
+                PublicationCRUD.updatePublication(PID, topic, title, pub_no);
+                BookCRUD.updateBook(PID, PublicationDate, ISBN, Edition);
+                return;
+
+
+            case 4:
+                System.out.println("Enter | separated Integer PID,String topic,String title, String pub_no, String PPtype,String IssueDate, String Periodicity ");
+                args = reader.readLine().split("[|]");
+                PID = Integer.valueOf(Integer.parseInt(args[0]));
+                topic = args[1];
+                title = args[2];
+                pub_no = args[3];
+                Type = args[4];
+                IssueDate = args[5];
+                Periodicity = args[6];
+
+                PublicationCRUD.updatePublication(PID, topic, title, pub_no);
+                PeriodicPublicationCRUD.updatePeriodicPublication(PID, Type, IssueDate, Periodicity);
+                return;
+
+            case 5:
                 System.out.println("Enter | separated Integer StaffID and Integer PID");
                 args = reader.readLine().split("[|]");
                 StaffID = Integer.valueOf(Integer.parseInt(args[0]));
@@ -69,14 +102,14 @@ public class PublicationUI {
                 EditsOperation.insertEdits(StaffID, PID);
                 return;
 
-            case 4:
+            case 6:
                 System.out.println("Enter the Editor's Staff ID:");
                 StaffID = Integer.valueOf(Integer.parseInt(reader.readLine()));
 
                 EditsOperation.viewEditorPubInfo(StaffID);
                 return;
 
-            case 5:
+            case 7:
                 System.out.println("Enter | separated Integer PID,Integer ArticleID,String Text");
                 args = reader.readLine().split("[|]");
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
@@ -86,7 +119,7 @@ public class PublicationUI {
                 ArticleCRUD.insertArticle(PID, ArticleID, Text);
                 return;
 
-            case 6:
+            case 8:
                 System.out.println("Enter | separated Integer PID,Integer ArticleID,String Text");
                 args = reader.readLine().split("[|]");
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
@@ -96,7 +129,7 @@ public class PublicationUI {
                 ArticleCRUD.updateArticle(PID, ArticleID, Text);
                 return;
 
-            case 7:
+            case 9:
                 System.out.println("Enter | separated Integer PID and Integer ArticleID");
                 args = reader.readLine().split("[|]");
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
@@ -105,7 +138,7 @@ public class PublicationUI {
                 ArticleCRUD.deleteArticle(PID, ArticleID);
                 return;
 
-            case 8:
+            case 10:
                 System.out.println("Enter | separated Integer PID,Integer ChapterID,String Title");
                 args = reader.readLine().split("[|]");
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
@@ -115,7 +148,7 @@ public class PublicationUI {
                 ChapterCRUD.insertChapter(PID, ChapterID, Title);
                 return;
 
-            case  9:
+            case  11:
                 System.out.println("Enter | separated Integer PID,Integer ChapterID,String Title");
                 args = reader.readLine().split("[|]");
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
@@ -125,7 +158,7 @@ public class PublicationUI {
                 ChapterCRUD.updateChapter(PID, ChapterID, Title);
                 return;
 
-            case 10:
+            case 12:
                 System.out.println("Enter | separated Integer PID and Integer ChapterID");
                 args = reader.readLine().split("[|]");
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
@@ -135,6 +168,8 @@ public class PublicationUI {
                 return;
 
         }
+
+        System.out.println("Enter a valid choice");
 
     }
 }
