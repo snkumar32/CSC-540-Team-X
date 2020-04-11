@@ -15,7 +15,7 @@ public class StaffUI {
         String[] args;
         System.out.println("1.viewAllStaff");
         System.out.println("2.viewStaffById");
-        System.out.println("3.insertStaff");
+        System.out.println("3.insert");
         System.out.println("4.updateStaff");
         System.out.println("5.deleteStaff");
         System.out.println("6.exit");
@@ -46,6 +46,7 @@ public class StaffUI {
 
                   System.out.println("New staffId is");
                 System.out.println(StaffCRUD.insertStaff(id,name,type,age,gender));
+
                 return;
             case 4:
                 System.out.println("Enter | separated Integer StaffID, String Name, String Type, Integer age, String Gender ");

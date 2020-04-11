@@ -50,6 +50,10 @@ public class DistributorOperations {
 
                 // insertion required
 
+
+
+
+
             case 3:
                 System.out.println("Enter | separated Integer DID and Balance for updation");
                 args = reader.readLine().split("[|]");
@@ -61,8 +65,7 @@ public class DistributorOperations {
                     System.out.println("Operation Failed");
                 }
 
-            default:
-                throw new IllegalStateException("Unexpected value: " + Integer.parseInt(input));
+
                 }
 
 
