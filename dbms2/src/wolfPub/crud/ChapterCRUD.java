@@ -22,7 +22,7 @@ public class ChapterCRUD {
             ResultSet rs = st.executeQuery("Select * from CHAPTER");
             ArrayList<Chapter> list = new ArrayList<>();
             while (rs.next()) {
-                Chapter p = new Chapter(Integer.valueOf(rs.getInt("PID")), Integer.valueOf(rs.getString("ChapterID")), rs.getString("CTitle"));
+                Chapter p = new Chapter(Integer.valueOf(rs.getInt("PID")), Integer.valueOf(rs.getString("ChapterID")), rs.getString("Title"));
                 list.add(p);
             }
             return list;
@@ -34,14 +34,14 @@ public class ChapterCRUD {
 
 
 
-    public static Integer insertChapter(Integer PID, Integer ChapterID, String CTitle) {
+    public static Integer insertChapter(Integer PID, Integer ChapterID, String Title) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "insert into CHAPTER(PID, CHAPTERID, CTITLE) values (?,?,?)";
+            String query = "insert into CHAPTER(PID, CHAPTERID, TITLE) values (?,?,?)";
             PreparedStatement st = conn.prepareStatement(query);
             st.setInt(1, PID);
             st.setInt(2, ChapterID);
-            st.setString(3, CTitle);
+            st.setString(3, Title);
             st.executeUpdate();
             ResultSet rs = st.executeQuery("select CHAPTERID from CHAPTER");
             int chapter_id = 0;
@@ -55,12 +55,14 @@ public class ChapterCRUD {
     }
 
 
-    public static Boolean updateChapter(Integer PID, Integer ChapterID, String CTitle) {
+    public static Boolean updateChapter(Integer PID, Integer ChapterID, String Title) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "Update CHAPTER set CTITLE=? where CHAPTERID=" + ChapterID + "and PID=" + PID;
+            String query = "Update CHAPTER set TITLE=? where CHAPTERID=? and PID=?";
             PreparedStatement st = conn.prepareStatement(query);
-            st.setString(1, CTitle);
+            st.setString(1, Title);
+            st.setInt(2, ChapterID);
+            st.setInt(3, PID);
             st.executeUpdate();
             return Boolean.valueOf(true);
         } catch (SQLException e) {
@@ -72,8 +74,12 @@ public class ChapterCRUD {
     public static Boolean deleteChapter(Integer PID, Integer ChapterID) {
         try {
             Connection conn = DbConnection.getConnection();
-            Statement st = conn.createStatement();
-            st.executeUpdate("DELETE FROM CHAPTER WHERE CHAPTERID= " + ChapterID + "and PID=" + PID);
+            String query = "DELETE FROM CHAPTER WHERE CHAPTERID=? and PID=?";
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setInt(1, ChapterID);
+            st.setInt(2, PID);
+            st.executeUpdate();
+
             return Boolean.valueOf(true);
         } catch (SQLException ex) {
             ex.printStackTrace();

@@ -38,7 +38,7 @@ public class ArticleCRUD {
     public static Integer insertArticle(Integer PID, Integer ArticleID, String Text) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "insert into STAFF(PID, ARTICLEID, TEXT ) values (?,?,?)";
+            String query = "insert into ARTICLE(PID, ARTICLEID, TEXT ) values (?,?,?)";
             PreparedStatement st = conn.prepareStatement(query);
             st.setInt(1, PID);
             st.setInt(2, ArticleID);
@@ -59,9 +59,12 @@ public class ArticleCRUD {
     public static Boolean updateArticle(Integer PID, Integer ArticleID, String Text) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "Update ARTICLE set TEXT=? where ARTICLEID=" + ArticleID + "and PID=" + PID;
+//            Update ARTICLE set Text='Qwerty' where PID=2 AND ArticleID=3;
+            String query = "Update ARTICLE set TEXT=? where PID=? and ArticleID=?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, Text);
+            st.setInt(2, PID);
+            st.setInt(3, ArticleID);
             st.executeUpdate();
             return Boolean.valueOf(true);
         } catch (SQLException e) {
@@ -73,8 +76,11 @@ public class ArticleCRUD {
     public static Boolean deleteArticle(Integer PID, Integer ArticleID) {
         try {
             Connection conn = DbConnection.getConnection();
-            Statement st = conn.createStatement();
-            st.executeUpdate("DELETE FROM ARTICLE WHERE ARTICLEID= " + ArticleID + "and PID=" + PID);
+            String query = "DELETE FROM ARTICLE WHERE ArticleID=? and PID=? ";
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setInt(1, ArticleID);
+            st.setInt(2, PID);
+            st.executeUpdate();
             return Boolean.valueOf(true);
         } catch (SQLException ex) {
             ex.printStackTrace();
