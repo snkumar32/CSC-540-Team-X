@@ -52,7 +52,7 @@ public class PublicationCRUD {
     public static Integer insertPublication(Integer PID, String topic, String title, String pub_no) {
         try {
             Connection conn = DbConnection.getConnection();
-            String query = "insert into PUBLICATION(PID, TOPIC, TITLE, PUB_NO) values (?,?,?,?,?)";
+            String query = "insert into PUBLICATION(PID, TOPIC, TITLE, PUB_NO) values (?,?,?,?)";
             PreparedStatement st = conn.prepareStatement(query);
             st.setInt(1, PID);
             st.setString(2, topic);
@@ -63,6 +63,7 @@ public class PublicationCRUD {
             int p_id = 0;
             while (rs.next())
                 p_id = rs.getInt("PID");
+            conn.commit();
             return Integer.valueOf(p_id);
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -81,6 +82,7 @@ public class PublicationCRUD {
             st.setString(3, pub_no);
 
             st.executeUpdate();
+            conn.commit();
             return Boolean.valueOf(true);
         } catch (SQLException e) {
             e.printStackTrace();
