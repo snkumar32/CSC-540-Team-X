@@ -1,10 +1,6 @@
 package wolfPub.crud;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import wolfPub.dbclasses.Book;
 import wolfPub.connection.*;
@@ -51,9 +47,9 @@ public class BookCRUD {
 
 
 
-    public static Integer insertBook(Integer PID, String publicationdate, String isbn, Integer edition) {
+    public static boolean insertBook(Connection conn, Integer PID, String publicationdate, String isbn, Integer edition) throws SQLException {
         try {
-            Connection conn = DbConnection.getConnection();
+//            Connection conn = DbConnection.getConnection();
             String query = "insert into BOOK(PID, PUBLICATIONDATE, ISBN, EDITION) values (?,?,?,?)";
             PreparedStatement st = conn.prepareStatement(query);
             st.setInt(1, PID);
@@ -61,14 +57,14 @@ public class BookCRUD {
             st.setString(3, isbn);
             st.setInt(4, edition);
             st.executeUpdate();
-            ResultSet rs = st.executeQuery("select PID from BOOK");
-            int p_id = 0;
-            while (rs.next())
-                p_id = rs.getInt("PID");
-            return Integer.valueOf(p_id);
+//            ResultSet rs = st.executeQuery("select PID from BOOK");
+//            int p_id = 0;
+//            while (rs.next())
+//                p_id = rs.getInt("PID");
+            return true;
         } catch (SQLException ex) {
-            ex.printStackTrace();
-            return null;
+//            ex.printStackTrace();
+            return false;
         }
     }
 

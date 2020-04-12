@@ -49,6 +49,48 @@ public class PublicationCRUD {
 
 
 
+    public static boolean insertPublication(Integer PID, String topic, String title, String pub_no, String PublicationDate, String ISBN, Integer Edition) throws SQLException {
+        boolean trans1 = false;
+        boolean trans2 = false;
+        Connection conn = null;
+        try {
+            conn = DbConnection.getConnection();
+            conn.setAutoCommit(false);
+            String query = "insert into PUBLICATION(PID, TOPIC, TITLE, PUB_NO) values (?,?,?,?)";
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setInt(1, PID);
+            st.setString(2, topic);
+            st.setString(3, title);
+            st.setString(4, pub_no);
+            st.executeUpdate();
+//            ResultSet rs = st.executeQuery("select PID from PUBLICATION");
+//            int p_id = 0;
+//            while (rs.next())
+//                p_id = rs.getInt("PID");
+            trans1 = true;
+            trans2 = BookCRUD.insertBook(conn, PID, PublicationDate, ISBN, Edition);
+
+            if(trans1 && trans2){
+                conn.commit();
+                System.out.println("Transaction successful");
+                return true;
+            }else{
+                conn.rollback();
+                System.out.println("Transaction Failed");
+                return false;
+            }
+        } catch (SQLException ex) {
+//            ex.printStackTrace();
+            conn.rollback();
+            System.out.println("Transaction Failed");
+            return false;
+        } finally {
+            if(conn != null){
+                conn.setAutoCommit(true);
+            }
+        }
+    }
+
     public static Integer insertPublication(Integer PID, String topic, String title, String pub_no) {
         try {
             Connection conn = DbConnection.getConnection();
