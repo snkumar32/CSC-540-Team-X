@@ -64,7 +64,18 @@ public class ChapterCRUD {
             st.setInt(2, ChapterID);
             st.setInt(3, PID);
             st.executeUpdate();
-            return Boolean.valueOf(true);
+            ResultSet rs = st.executeQuery("Select count(*) as count_val from CHAPTER where PID="+PID+"CHAPTERID="+ChapterID);
+            int count = 0;
+            while (rs.next()) {
+                count = rs.getInt("count_val");
+
+            }
+            conn.commit();
+            if (count!=0){
+                return  true;
+            }
+            return false;
+            //return Boolean.valueOf(true);
         } catch (SQLException e) {
             e.printStackTrace();
             return Boolean.valueOf(false);

@@ -51,7 +51,12 @@ public class EditorUI {
                     PID = Integer.parseInt(str[0]);
                     ArticleID = Integer.parseInt(str[1]);
                     Text = str[2];
-                    ArticleCRUD.updateArticle(PID,ArticleID,Text);
+                    if (ArticleCRUD.updateArticle(PID,ArticleID,Text)) {
+                        System.out.println(" Operation Successful");
+                    } else {
+                        System.out.println(" Operation Failed");
+                    }
+
                     break;
                 case 4:
                     System.out.println("Enter | separated Integer PID,Integer ArticleID");
@@ -75,7 +80,12 @@ public class EditorUI {
                     PID = Integer.valueOf(Integer.parseInt(str[0]));
                     ChapterID = Integer.valueOf(Integer.parseInt(str[1]));
                     Title = str[2];
-                    ChapterCRUD.updateChapter(PID, ChapterID, Title);
+                    if (ChapterCRUD.updateChapter(PID, ChapterID, Title)) {
+                        System.out.println(" Operation Successful");
+                    } else {
+                        System.out.println(" Operation Failed");
+                    }
+                    //ChapterCRUD.updateChapter(PID, ChapterID, Title);
                     return;
 
                 case 7:

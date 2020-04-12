@@ -79,7 +79,16 @@ public class BookCRUD {
             st.setInt(3, edition);
             st.setInt(4, PID);
             st.executeUpdate();
-            return Boolean.valueOf(true);
+            ResultSet rs = st.executeQuery("Select count(*) as count_val from BOOK where PID="+PID+"ISBN="+isbn);
+            int count = 0;
+            while (rs.next()) {
+                count = rs.getInt("count_val");
+
+            }
+            if (count!=0){
+                return  true;
+            }
+            return false;
         } catch (SQLException e) {
             e.printStackTrace();
             return Boolean.valueOf(false);

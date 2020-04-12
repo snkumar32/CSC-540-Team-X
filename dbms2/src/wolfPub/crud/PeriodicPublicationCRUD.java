@@ -83,7 +83,18 @@ public class PeriodicPublicationCRUD {
             st.setString(3, periodicity);
             st.setInt(4, PID);
             st.executeUpdate();
-            return Boolean.valueOf(true);
+            ResultSet rs = st.executeQuery("Select count(*) as count_val from PERIODICPUBLICATION where PID="+PID+"TYPE="+type);
+            int count = 0;
+            while (rs.next()) {
+                count = rs.getInt("count_val");
+
+            }
+            conn.commit();
+            if (count!=0){
+                return  true;
+            }
+            return false;
+            //return Boolean.valueOf(true);
         } catch (SQLException e) {
             e.printStackTrace();
             return Boolean.valueOf(false);
