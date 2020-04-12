@@ -44,7 +44,7 @@ public class ReportOperations {
         try {
             Connection conn = DbConnection.getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT SUM(PRICE) AS REVENUE FROM ORDERS");
+            ResultSet rs = st.executeQuery("select (sum(TOTALPAYMENT) - sum(Shipping_Cost))  as REVENUE from ORDERS;");
             while (rs.next()) {
                 System.out.println(" TOTAL REVENUE  = " + Float.valueOf(rs.getFloat(1)));
             }
@@ -85,7 +85,7 @@ public class ReportOperations {
         try {
             Connection conn = DbConnection.getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT SUM(O.PRICE) AS TOTAL_REVENUE, D.CITY  FROM DISTRIBUTOR D NATURAL JOIN PLACES P NATURAL JOIN ORDERS O GROUP BY D.CITY");
+            ResultSet rs = st.executeQuery("SELECT (sum(O.TOTALPAYMENT) - sum(O.Shipping_Cost)) AS TOTAL_REVENUE, D.CITY  FROM DISTRIBUTOR D NATURAL JOIN PLACES P NATURAL JOIN ORDERS O GROUP BY D.CITY;");
             while (rs.next()) {
                 System.out.println("( TOTAL_REVENUE = " + Float.valueOf(rs.getFloat(1)) + " , City = " + rs.getString(2) + " )");
             }
@@ -99,7 +99,7 @@ public class ReportOperations {
         try {
             Connection conn = DbConnection.getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT SUM(O.PRICE) AS TOTAL_REVENUE, D.CITY  FROM DISTRIBUTOR D NATURAL JOIN PLACES P NATURAL JOIN ORDERS O GROUP BY D.CITY HAVING CITY = '" + city + "'");
+            ResultSet rs = st.executeQuery("SELECT (sum(O.TOTALPAYMENT) - sum(O.Shipping_Cost)) AS TOTAL_REVENUE, D.CITY  FROM DISTRIBUTOR D NATURAL JOIN PLACES P NATURAL JOIN ORDERS O GROUP BY D.CITY HAVING CITY = '" + city + "'");
             while (rs.next()) {
                 System.out.println("( TOTAL_REVENUE = " + Float.valueOf(rs.getFloat(1)) + " , City = " + rs.getString(2) + " )");
             }
@@ -112,7 +112,7 @@ public class ReportOperations {
         try {
             Connection conn = DbConnection.getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT SUM(O.PRICE) AS TOTAL_REVENUE,D.DID FROM DISTRIBUTOR D NATURAL JOIN PLACES P NATURAL JOIN ORDERS O GROUP BY D.DID");
+            ResultSet rs = st.executeQuery("SELECT (sum(O.TOTALPAYMENT) - sum(O.Shipping_Cost)) AS TOTAL_REVENUE,D.DID FROM DISTRIBUTOR D NATURAL JOIN PLACES P NATURAL JOIN ORDERS O GROUP BY D.DID");
             while (rs.next()) {
                 System.out.println("( TOTAL_REVENUE = " + Float.valueOf(rs.getFloat(1)) + " , Distributor ID = " + Integer.valueOf(rs.getInt(2)) + " )");
             }
@@ -125,7 +125,7 @@ public class ReportOperations {
         try {
             Connection conn = DbConnection.getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT SUM(O.PRICE) AS TOTAL_REVENUE,D.DID FROM DISTRIBUTOR D NATURAL JOIN PLACES P NATURAL JOIN ORDERS O GROUP BY D.DID HAVING DID = " + DID);
+            ResultSet rs = st.executeQuery("SELECT (sum(O.TOTALPAYMENT) - sum(O.Shipping_Cost)) AS TOTAL_REVENUE,D.DID FROM DISTRIBUTOR D NATURAL JOIN PLACES P NATURAL JOIN ORDERS O GROUP BY D.DID HAVING DID = " + DID);
             while (rs.next()) {
                 System.out.println("( TOTAL_REVENUE = " + Float.valueOf(rs.getFloat(1)) + " , Distributor ID = " + Integer.valueOf(rs.getInt(2)) + " )");
             }
@@ -138,7 +138,7 @@ public class ReportOperations {
         try {
             Connection conn = DbConnection.getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT D.STREET,D.CITY,SUM(O.Price) AS TOTAL_REVENUE FROM DISTRIBUTOR D NATURAL JOIN PLACES P NATURAL JOIN ORDERS O GROUP BY D.STREET,D.CITY");
+            ResultSet rs = st.executeQuery("SELECT D.STREET,D.CITY,(sum(O.TOTALPAYMENT) - sum(O.Shipping_Cost)) AS TOTAL_REVENUE FROM DISTRIBUTOR D NATURAL JOIN PLACES P NATURAL JOIN ORDERS O GROUP BY D.STREET,D.CITY");
             while (rs.next()) {
                 System.out.println("( " + " STREET = " + (rs.getString(1)) +  " , CITY = " + (rs.getString(2)) + " , TOTAL_REVENUE = " + Float.valueOf(rs.getFloat(3)) + " )");
             }
@@ -151,7 +151,7 @@ public class ReportOperations {
         try {
             Connection conn = DbConnection.getConnection();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT D.STREET,D.CITY,SUM(O.Price) AS TOTAL_REVENUE FROM DISTRIBUTOR D NATURAL JOIN PLACES P NATURAL JOIN ORDERS O GROUP BY D.STREET,D.CITY HAVING STREET = '" + Location + "'");
+            ResultSet rs = st.executeQuery("SELECT D.STREET,D.CITY,(sum(O.TOTALPAYMENT) - sum(O.Shipping_Cost)) AS TOTAL_REVENUE FROM DISTRIBUTOR D NATURAL JOIN PLACES P NATURAL JOIN ORDERS O GROUP BY D.STREET,D.CITY HAVING STREET = '" + Location + "'");
             while (rs.next()) {
                 System.out.println("( " + " STREET = " + (rs.getString(1)) +  " , CITY = " + (rs.getString(2)) + " , TOTAL_REVENUE = " + Float.valueOf(rs.getFloat(3)) + " )");
             }

@@ -49,7 +49,8 @@ public class PublicationCRUD {
 
 
 //Start Transaction
-    public static boolean insertPublication(Integer PID, String topic, String title, String pub_no, String PublicationDate, String ISBN, Integer Edition) throws SQLException {
+    public static boolean insertPublication(Integer PID, String topic, String title, String pub_no, String PublicationDate,
+                                            String ISBN, Integer Edition) throws SQLException {
         boolean trans1 = false;
         boolean trans2 = false;
         Connection conn = null;
@@ -77,7 +78,6 @@ public class PublicationCRUD {
                 return false;
             }
         } catch (SQLException ex) {
-//            ex.printStackTrace();
             conn.rollback();
             System.out.println("Transaction Failed");
             return false;

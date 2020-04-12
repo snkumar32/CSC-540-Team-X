@@ -9,13 +9,13 @@ import java.sql.*;
 
 public class insertTransactions {
 
-    public static boolean insertOrder(Integer orderid,String deadline_date,String placement_date,Float shipping_cost,Float price,Float total_pay,Integer did,Integer pid,Integer noc) throws SQLException {
+    public static boolean insertOrder(Integer orderid,String deadline_date,String placement_date,Float shipping_cost,Float price,Float total_pay,Integer did,
+                                      Integer pid,Integer noc) throws SQLException {
         Connection conn = null;
         boolean first = false,second = false,third = false;
         try {
             conn = DbConnection.getConnection();
             conn.setAutoCommit(false);
-            //Savepoint savepoint = conn.setSavepoint();
             try {
                 String query = "insert into ORDERS values (?,?,?,?,?,?)";
                 PreparedStatement st = conn.prepareStatement(query);
@@ -25,10 +25,7 @@ public class insertTransactions {
                 st.setFloat(4, shipping_cost);
                 st.setFloat(5, price);
                 st.setFloat(6, total_pay);
-
                 st.executeUpdate();
-
-
                 first = true;
             }
             catch(SQLException ex){
@@ -36,17 +33,12 @@ public class insertTransactions {
                 first = false;
                 return false;
             }
-            /////// end of one insertion
-
             try {
                 String query1 = "insert into PLACES values (?,?)";
                 PreparedStatement st1 = conn.prepareStatement(query1);
                 st1.setInt(1, orderid);
                 st1.setInt(2, did);
-
                 st1.executeUpdate();
-
-
                 second = true;
             }
             catch(SQLException ex1){
@@ -55,7 +47,6 @@ public class insertTransactions {
                 second = false;
                 return false;
             }
-            // end of second insertion
             try {
                 String query2 = "insert into CONSISTSOF values (?,?,?)";
                 PreparedStatement st2 = conn.prepareStatement(query2);
@@ -71,11 +62,8 @@ public class insertTransactions {
 
                 if (order_id2 != 1) {
                     System.out.println("Third Insertion Failed");
-                    //conn.rollback();
                 }
-
                 third = true;
-
             }
             catch(SQLException ex2){
                 System.out.println("Third Insertion Failed");
@@ -90,7 +78,6 @@ public class insertTransactions {
             conn.rollback();
             System.out.println("Transaction Failed");
         }
-
             conn.setAutoCommit(true);
             return true;
         } catch (SQLException ex) {
@@ -98,7 +85,6 @@ public class insertTransactions {
             conn.rollback();
             return false;
         }
-
         finally {
             if(conn!=null) {
                 conn.setAutoCommit(true);
