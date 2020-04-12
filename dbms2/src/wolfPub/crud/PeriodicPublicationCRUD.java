@@ -51,7 +51,7 @@ public class PeriodicPublicationCRUD {
 
 
 
-    public static Integer insertPeriodicPublication(Integer PID, String type, String issuedate, String periodicity) {
+    public static Boolean insertPeriodicPublication(Integer PID, String type, String issuedate, String periodicity) {
         try {
             Connection conn = DbConnection.getConnection();
             String query = "insert into PERIODICPUBLICATION(PID, TYPE, ISSUEDATE, PERIODICITY ) values (?,?,?,?)";
@@ -65,10 +65,10 @@ public class PeriodicPublicationCRUD {
             int p_id = 0;
             while (rs.next())
                 p_id = rs.getInt("PID");
-            return Integer.valueOf(p_id);
+            return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return null;
+            return false;
         }
     }
 
@@ -83,7 +83,7 @@ public class PeriodicPublicationCRUD {
             st.setString(3, periodicity);
             st.setInt(4, PID);
             st.executeUpdate();
-            ResultSet rs = st.executeQuery("Select count(*) as count_val from PERIODICPUBLICATION where PID="+PID+"TYPE="+type);
+            ResultSet rs = st.executeQuery("Select count(*) as count_val from PERIODICPUBLICATION where PID="+PID);
             int count = 0;
             while (rs.next()) {
                 count = rs.getInt("count_val");

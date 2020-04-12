@@ -71,8 +71,12 @@ public class PublicationUI {
                 IssueDate = args[5];
                 Periodicity = args[6];
 
-                PublicationCRUD.insertPublication(PID, topic, title, pub_no);
-                PeriodicPublicationCRUD.insertPeriodicPublication(PID, Type, IssueDate, Periodicity);
+                if (PublicationCRUD.insertPublication(PID, topic, title, pub_no) && PeriodicPublicationCRUD.insertPeriodicPublication(PID, Type, IssueDate, Periodicity)) {
+                    System.out.println("Operation Successful");
+                } else {
+                    System.out.println("Operation Failed");
+                }
+
 
                 return;
 
@@ -88,11 +92,17 @@ public class PublicationUI {
                 Edition = Integer.valueOf(Integer.parseInt(args[6]));
 
 
-                if(PublicationCRUD.updatePublication(PID, topic, title, pub_no) && BookCRUD.updateBook(PID, PublicationDate, ISBN, Edition)){
-                    System.out.println("Operation Sucessful");
+                if(PublicationCRUD.updatePublication(PID, topic, title, pub_no)){
+                    System.out.println("Publication Operation Sucessful");
                 }else{
-                    System.out.println("Operation Failed");
+                    System.out.println("Publication Operation Failed");
                 }
+                if(BookCRUD.updateBook(PID, PublicationDate, ISBN, Edition)){
+                    System.out.println("Book Operation Sucessful");
+                }else{
+                    System.out.println("Book Operation Failed");
+                }
+
 
                 return;
 

@@ -64,7 +64,7 @@ public class ChapterCRUD {
             st.setInt(2, ChapterID);
             st.setInt(3, PID);
             st.executeUpdate();
-            ResultSet rs = st.executeQuery("Select count(*) as count_val from CHAPTER where PID="+PID+"CHAPTERID="+ChapterID);
+            ResultSet rs = st.executeQuery("Select count(*) as count_val from CHAPTER where PID="+PID + " AND ChapterID = " + ChapterID);
             int count = 0;
             while (rs.next()) {
                 count = rs.getInt("count_val");

@@ -66,13 +66,12 @@ public class ArticleCRUD {
             st.setInt(2, PID);
             st.setInt(3, ArticleID);
             st.executeUpdate();
-            ResultSet rs = st.executeQuery("Select count(*) as count_val from ARTICLE where PID="+PID+"ArticleID="+ArticleID);
+            ResultSet rs = st.executeQuery("Select count(*) as count_val from ARTICLE where PID="+ PID + " AND ArticleID =" + ArticleID);
             int count = 0;
             while (rs.next()) {
                 count = rs.getInt("count_val");
 
             }
-            conn.commit();
             if (count!=0){
                 return  true;
             }
@@ -92,7 +91,8 @@ public class ArticleCRUD {
             st.setInt(1, ArticleID);
             st.setInt(2, PID);
             st.executeUpdate();
-            return Boolean.valueOf(true);
+            return true;
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             return Boolean.valueOf(false);

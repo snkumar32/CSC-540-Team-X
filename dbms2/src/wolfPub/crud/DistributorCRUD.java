@@ -35,7 +35,7 @@ public class DistributorCRUD {
 
 
 
-    public static Integer insertDistributor(Integer did, String NAME, String TYPE, String phone, float balance,String contact_person,String street, String city) {
+    public static Boolean insertDistributor(Integer did, String NAME, String TYPE, String phone, float balance,String contact_person,String street, String city) {
         try {
             Connection conn = DbConnection.getConnection();
             String query = "insert into DISTRIBUTOR values (?,?,?,?,?,?,?,?)";
@@ -50,13 +50,11 @@ public class DistributorCRUD {
             st.setString(8, city);
             st.executeUpdate();
             ResultSet rs = st.executeQuery("select STAFFID from STAFF");
-            int staff_id = 0;
-            while (rs.next())
-                staff_id = rs.getInt("STAFFID");
-            return Integer.valueOf(staff_id);
+
+            return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return null;
+            return false;
         }
     }
 

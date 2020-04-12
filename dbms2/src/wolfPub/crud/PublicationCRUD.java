@@ -88,7 +88,7 @@ public class PublicationCRUD {
         }
     }
 
-    public static Integer insertPublication(Integer PID, String topic, String title, String pub_no) {
+    public static Boolean insertPublication(Integer PID, String topic, String title, String pub_no) {
         try {
             Connection conn = DbConnection.getConnection();
             String query = "insert into PUBLICATION(PID, TOPIC, TITLE, PUB_NO) values (?,?,?,?)";
@@ -103,10 +103,10 @@ public class PublicationCRUD {
             while (rs.next())
                 p_id = rs.getInt("PID");
             conn.commit();
-            return Integer.valueOf(p_id);
+            return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return null;
+            return false;
         }
     }
 
@@ -122,13 +122,13 @@ public class PublicationCRUD {
             st.setInt(4,PID);
             st.executeUpdate();
 
-            ResultSet rs = st.executeQuery("Select count(*) as count_val from PUBLICATION where PID="+PID+"PUB_NO="+pub_no);
+            ResultSet rs = st.executeQuery("Select count(*) as count_val from PUBLICATION where PID="+PID);
             int count = 0;
             while (rs.next()) {
                 count = rs.getInt("count_val");
 
             }
-            conn.commit();
+
             if (count!=0){
                 return  true;
             }

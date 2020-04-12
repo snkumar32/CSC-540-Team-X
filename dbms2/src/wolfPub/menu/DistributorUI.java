@@ -42,8 +42,15 @@ public class DistributorUI {
                     city = args[7];
                     contact_person = args[5];
 
-                    System.out.println("New Distributor ID is");
-                    System.out.println(DistributorCRUD.insertDistributor(did, name, type, phone, balance, contact_person, street, city));
+
+                    if(DistributorCRUD.insertDistributor(did, name, type, phone, balance, contact_person, street, city))
+                    {
+                        System.out.println("Successful");
+                    }
+                    else
+                    {
+                        System.out.println("Failure");
+                    }
                     return;
                 case 3:
 

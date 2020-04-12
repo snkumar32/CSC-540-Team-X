@@ -28,7 +28,6 @@ public class AdminUI {
             switch (Integer.parseInt(input)) {
                 case 1:
                     PublicationUI.publicationUI(reader);
-                    //System.out.println("Test Admin-Publication");
                     break;
                 case 2:
                     StaffUI.staffUI(reader);

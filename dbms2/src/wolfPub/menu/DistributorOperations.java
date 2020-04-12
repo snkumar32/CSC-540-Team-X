@@ -31,7 +31,7 @@ public class DistributorOperations {
                     System.out.println("Enter | separated Integer DID");
                     args = reader.readLine().split("[|]");
                     did = Integer.valueOf(Integer.parseInt(args[0]));
-                    System.out.println("Enter | separated Integer OrderID, String Deadline_Date, String Placement_Date,Float Shipping Cost,float price,float total_payment");
+                    System.out.println("Enter | separated Integer OrderID, String Deadline_Date, String Placement_Date,Float Shipping Cost,float price,float total_payment(0)");
                     args = reader.readLine().split("[|]");
                     orderid = Integer.valueOf(Integer.parseInt(args[0]));
                     deadline_date = args[1];

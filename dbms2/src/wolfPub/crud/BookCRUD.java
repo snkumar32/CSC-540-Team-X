@@ -60,7 +60,7 @@ public class BookCRUD {
 
             return true;
         } catch (SQLException ex) {
-            ex.printStackTrace();
+          //  ex.printStackTrace();
             return false;
         }
     }
@@ -76,11 +76,10 @@ public class BookCRUD {
             st.setInt(3, edition);
             st.setInt(4, PID);
             st.executeUpdate();
-            ResultSet rs = st.executeQuery("Select count(*) as count_val from BOOK where PID="+PID+"ISBN="+isbn);
+            ResultSet rs = st.executeQuery("Select count(*) as count_val from BOOK where PID="+PID);
             int count = 0;
             while (rs.next()) {
                 count = rs.getInt("count_val");
-
             }
             if (count!=0){
                 return  true;

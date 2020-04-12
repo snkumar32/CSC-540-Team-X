@@ -25,7 +25,6 @@ public class Main {
                 switch (Integer.parseInt(choice)) {
                     case 1:
                         AdminUI.adminUI(reader);
-                        //System.out.println("Test Main-Admin-Publication");
                         break;
                     case 2:
                         EditorUI.editorUI(reader);
