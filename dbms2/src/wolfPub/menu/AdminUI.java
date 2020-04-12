@@ -4,10 +4,11 @@ import wolfPub.crud.ReportOperations;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class AdminUI {
 
-    public static void adminUI(BufferedReader reader) throws NumberFormatException, IOException {
+    public static void adminUI(BufferedReader reader) throws NumberFormatException, IOException, SQLException {
 
         String[] main_args = null;
         boolean exit_val = true;

@@ -35,7 +35,7 @@ public class ArticleCRUD {
 
 
 
-    public static Integer insertArticle(Integer PID, Integer ArticleID, String Text) {
+    public static Boolean insertArticle(Integer PID, Integer ArticleID, String Text) {
         try {
             Connection conn = DbConnection.getConnection();
             String query = "insert into ARTICLE(PID, ARTICLEID, TEXT ) values (?,?,?)";
@@ -48,10 +48,10 @@ public class ArticleCRUD {
             int article_id = 0;
             while (rs.next())
                 article_id = rs.getInt("ARTICLEID");
-            return Integer.valueOf(article_id);
+            return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return null;
+            return false;
         }
     }
 
