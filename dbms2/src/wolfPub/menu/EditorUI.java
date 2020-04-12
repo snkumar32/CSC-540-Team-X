@@ -2,9 +2,10 @@ package wolfPub.menu;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class EditorUI {
-    public static void editorUI(BufferedReader reader) throws NumberFormatException, IOException {
+    public static void editorUI(BufferedReader reader) throws NumberFormatException, IOException, SQLException {
 
         String[] main_args = null;
         boolean exit_val = true;
