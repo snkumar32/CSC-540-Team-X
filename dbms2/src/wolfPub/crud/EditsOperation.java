@@ -36,7 +36,7 @@ public class EditsOperation {
 
 
 
-    public static Integer insertEdits(Integer StaffID, Integer PID) {
+    public static Boolean insertEdits(Integer StaffID, Integer PID) {
         try {
             Connection conn = DbConnection.getConnection();
             String query = "insert into EDITS(STAFFID, PID ) values (?,?)";
@@ -48,10 +48,10 @@ public class EditsOperation {
             int staff_id = 0;
             while (rs.next())
                 staff_id = rs.getInt("STAFFID");
-            return Integer.valueOf(staff_id);
+            return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return null;
+            return false;
         }
     }
 

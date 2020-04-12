@@ -34,7 +34,7 @@ public class ChapterCRUD {
 
 
 
-    public static Integer insertChapter(Integer PID, Integer ChapterID, String Title) {
+    public static Boolean insertChapter(Integer PID, Integer ChapterID, String Title) {
         try {
             Connection conn = DbConnection.getConnection();
             String query = "insert into CHAPTER(PID, CHAPTERID, TITLE) values (?,?,?)";
@@ -47,10 +47,10 @@ public class ChapterCRUD {
             int chapter_id = 0;
             while (rs.next())
                 chapter_id = rs.getInt("CHAPTERID");
-            return Integer.valueOf(chapter_id);
+            return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return null;
+            return false;
         }
     }
 

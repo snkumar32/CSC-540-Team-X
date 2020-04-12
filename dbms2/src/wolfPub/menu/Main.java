@@ -27,13 +27,19 @@ public class Main {
                         AdminUI.adminUI(reader);
                         //System.out.println("Test Main-Admin-Publication");
                         break;
+                    case 2:
+                        EditorUI.editorUI(reader);
+                        break;
+                    case 3:
+                        DistributorUI.distributorUI(reader);
+                        break;
                     case 4:
                         System.exit(0);
                         break;
 
                 }
                 System.out.println("Please enter a valid choice");
-            } catch (IOException e) {
+            } catch (IOException | SQLException e) {
                 e.printStackTrace();
             }
 

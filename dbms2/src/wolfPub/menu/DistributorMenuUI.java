@@ -1,5 +1,7 @@
 package wolfPub.menu;
 
+import wolfPub.crud.DistributorCRUD;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 
@@ -18,9 +20,8 @@ public class DistributorMenuUI {
 
             switch (Integer.parseInt(input)) {
                 case 1:
-                    PublicationUI.publicationUI(reader);
-                    //System.out.println("Test Admin-Publication");
-                    break;
+                    DistributorCRUD.viewDistributor().forEach(System.out::println);
+                    return;
                 case 2:
                     Main.main(str);
                 default:

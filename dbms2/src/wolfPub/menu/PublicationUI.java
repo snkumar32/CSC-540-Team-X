@@ -48,8 +48,13 @@ public class PublicationUI {
                 ISBN = args[5];
                 Edition = Integer.valueOf(Integer.parseInt(args[6]));
 
-                PublicationCRUD.insertPublication(PID, topic, title, pub_no, PublicationDate, ISBN, Edition);
+
 //                BookCRUD.insertBook(PID, PublicationDate, ISBN, Edition);
+                if (PublicationCRUD.insertPublication(PID, topic, title, pub_no, PublicationDate, ISBN, Edition)) {
+                    System.out.println("Operation Successful");
+                } else {
+                    System.out.println("Operation Failed");
+                }
                 return;
 
             case 2:
@@ -65,6 +70,7 @@ public class PublicationUI {
 
                 PublicationCRUD.insertPublication(PID, topic, title, pub_no);
                 PeriodicPublicationCRUD.insertPeriodicPublication(PID, Type, IssueDate, Periodicity);
+
                 return;
 
             case 3:
@@ -102,7 +108,11 @@ public class PublicationUI {
                 args = reader.readLine().split("[|]");
                 StaffID = Integer.valueOf(Integer.parseInt(args[0]));
                 PID = Integer.valueOf(Integer.parseInt(args[1]));
-                EditsOperation.insertEdits(StaffID, PID);
+                if (EditsOperation.insertEdits(StaffID, PID)) {
+                    System.out.println("Operation Successful");
+                } else {
+                    System.out.println("Operation Failed");
+                }
                 return;
 
             case 6:
@@ -119,7 +129,11 @@ public class PublicationUI {
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
                 ArticleID = Integer.valueOf(Integer.parseInt(args[1]));
                 Text = args[2];
-                ArticleCRUD.insertArticle(PID, ArticleID, Text);
+                if (ArticleCRUD.insertArticle(PID, ArticleID, Text)) {
+                    System.out.println("Operation Successful");
+                } else {
+                    System.out.println("Operation Failed");
+                }
                 return;
 
             case 8:
@@ -136,7 +150,12 @@ public class PublicationUI {
                 args = reader.readLine().split("[|]");
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
                 ArticleID = Integer.valueOf(Integer.parseInt(args[1]));
-                ArticleCRUD.deleteArticle(PID, ArticleID);
+
+                if (ArticleCRUD.deleteArticle(PID, ArticleID)) {
+                    System.out.println("Delete Operation Successful");
+                } else {
+                    System.out.println("Delete Operation Failed");
+                }
                 return;
 
             case 10:
@@ -145,7 +164,12 @@ public class PublicationUI {
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
                 ChapterID = Integer.valueOf(Integer.parseInt(args[1]));
                 Title = args[2];
-                ChapterCRUD.insertChapter(PID, ChapterID, Title);
+
+                if (ChapterCRUD.insertChapter(PID, ChapterID, Title)) {
+                    System.out.println(" Operation Successful");
+                } else {
+                    System.out.println(" Operation Failed");
+                }
                 return;
 
             case  11:
@@ -162,7 +186,11 @@ public class PublicationUI {
                 args = reader.readLine().split("[|]");
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
                 ChapterID = Integer.valueOf(Integer.parseInt(args[1]));
-                ChapterCRUD.deleteChapter(PID, ChapterID);
+                if (ChapterCRUD.deleteChapter(PID, ChapterID)) {
+                    System.out.println("Delete Operation Successful");
+                } else {
+                    System.out.println("Delete Operation Failed");
+                }
                 return;
             case 13:
                 Main.main(main_args);
