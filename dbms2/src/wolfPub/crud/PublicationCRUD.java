@@ -48,7 +48,7 @@ public class PublicationCRUD {
     }
 
 
-
+//Start Transaction
     public static boolean insertPublication(Integer PID, String topic, String title, String pub_no, String PublicationDate, String ISBN, Integer Edition) throws SQLException {
         boolean trans1 = false;
         boolean trans2 = false;
@@ -63,10 +63,7 @@ public class PublicationCRUD {
             st.setString(3, title);
             st.setString(4, pub_no);
             st.executeUpdate();
-//            ResultSet rs = st.executeQuery("select PID from PUBLICATION");
-//            int p_id = 0;
-//            while (rs.next())
-//                p_id = rs.getInt("PID");
+
             trans1 = true;
             trans2 = BookCRUD.insertBook(conn, PID, PublicationDate, ISBN, Edition);
 

@@ -21,7 +21,7 @@ public class DistributorMenuUI {
             switch (Integer.parseInt(input)) {
                 case 1:
                     DistributorCRUD.viewDistributor().forEach(System.out::println);
-                    return;
+                    break;
                 case 2:
                     Main.main(str);
                 default:

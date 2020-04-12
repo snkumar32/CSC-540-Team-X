@@ -67,7 +67,7 @@ public class EditorUI {
                     ChapterID = Integer.valueOf(Integer.parseInt(str[1]));
                     Title = str[2];
                     ChapterCRUD.insertChapter(PID, ChapterID, Title);
-                    return;
+                    break;
 
                 case 6:
                     System.out.println("Enter | separated Integer PID,Integer ChapterID,String Title");
@@ -76,7 +76,7 @@ public class EditorUI {
                     ChapterID = Integer.valueOf(Integer.parseInt(str[1]));
                     Title = str[2];
                     ChapterCRUD.updateChapter(PID, ChapterID, Title);
-                    return;
+                    break;
 
                 case 7:
                     System.out.println("Enter | separated Integer PID and Integer ChapterID");
@@ -84,7 +84,7 @@ public class EditorUI {
                     PID = Integer.valueOf(Integer.parseInt(str[0]));
                     ChapterID = Integer.valueOf(Integer.parseInt(str[1]));
                     ChapterCRUD.deleteChapter(PID, ChapterID);
-                    return;
+                    break;
                 case 8:
                     Main.main(str);
                 default:

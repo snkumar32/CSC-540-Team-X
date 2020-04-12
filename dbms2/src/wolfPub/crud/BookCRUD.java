@@ -57,13 +57,10 @@ public class BookCRUD {
             st.setString(3, isbn);
             st.setInt(4, edition);
             st.executeUpdate();
-//            ResultSet rs = st.executeQuery("select PID from BOOK");
-//            int p_id = 0;
-//            while (rs.next())
-//                p_id = rs.getInt("PID");
+
             return true;
         } catch (SQLException ex) {
-//            ex.printStackTrace();
+            ex.printStackTrace();
             return false;
         }
     }
