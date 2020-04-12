@@ -4,12 +4,14 @@ import wolfPub.crud.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Arrays;
+import wolfPub.transactions.*;
 
 
 public class DistributorOperations {
 
-    public static void distributorOperationsUI(BufferedReader reader) throws NumberFormatException, IOException {
+    public static void distributorOperationsUI(BufferedReader reader) throws NumberFormatException, IOException, SQLException {
         Integer did, orderid;
         Float price, shipping_cost, total_pay;
         String placement_date, deadline_date;
@@ -43,10 +45,10 @@ public class DistributorOperations {
                     Integer noc = Integer.valueOf(Integer.parseInt(args[1]));
 
 
-                    InputOrders.insertOrder(orderid, deadline_date, placement_date, shipping_cost, price, total_pay);
+                    insertTransactions.insertOrder(orderid, deadline_date, placement_date, shipping_cost, price, total_pay,did,pid,noc);
 
-                    InputOrders.insertPlaces(orderid, did);
-                    InputOrders.insertConsistsOf(orderid, pid, noc);
+                    //InputOrders.insertPlaces(orderid, did);
+                    //InputOrders.insertConsistsOf(orderid, pid, noc);
                     return;
 
                 case 2:

@@ -65,6 +65,15 @@ public class DistributorUI {
                     return;
                 case 4:
                     //TO-DO
+
+                    System.out.println("Enter distributorId");
+                    Integer id = Integer.valueOf(Integer.parseInt(reader.readLine()));
+                    if(DistributorCRUD.deleteDistributor(id)){
+                        System.out.println("Operation Successful");
+                    }
+                    else{
+                        System.out.println("Operation Failed");
+                    }
                 case 5:
                     Main.main(main_args);
                 default:

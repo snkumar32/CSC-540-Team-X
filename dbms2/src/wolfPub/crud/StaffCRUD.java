@@ -49,7 +49,8 @@ public class StaffCRUD {
 
 
 
-    public static Integer insertStaff(Integer id, String NAME, String TYPE, Integer AGE, String GENDER) {
+    public static boolean insertAuthor(Integer id, String NAME, String TYPE, Integer AGE, String GENDER) {
+        boolean state = false;
         try {
             Connection conn = DbConnection.getConnection();
             String query = "insert into STAFF(STAFFID, NAME, TYPE, AGE, GENDER ) values (?,?,?,?,?)";
@@ -60,16 +61,40 @@ public class StaffCRUD {
             st.setInt(4, AGE);
             st.setString(5, GENDER);
             st.executeUpdate();
-            ResultSet rs = st.executeQuery("select STAFFID from STAFF");
-            int staff_id = 0;
-            while (rs.next())
-                staff_id = rs.getInt("STAFFID");
-            return Integer.valueOf(staff_id);
+            String query1 = "insert into AUTHOR values(?)";
+            PreparedStatement st1 = conn.prepareStatement(query1);
+            st1.setInt(1, id);
+            st1.executeUpdate();
+            return true;
+
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return null;
+            return false;
         }
     }
+
+    public static boolean insertEditor(Integer id, String NAME, String TYPE, Integer AGE, String GENDER) {
+        try {
+            Connection conn = DbConnection.getConnection();
+            String query = "insert into STAFF(STAFFID, NAME, TYPE, AGE, GENDER ) values (?,?,?,?,?)";
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setInt(1, id);
+            st.setString(2, NAME);
+            st.setString(3, TYPE);
+            st.setInt(4, AGE);
+            st.setString(5, GENDER);
+            st.executeUpdate();
+            String query1 = "insert into EDITOR values (?)";
+            PreparedStatement st1 = conn.prepareStatement(query1);
+            st1.setInt(1, id);
+            st1.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
 
 
     public static Boolean updateStaff(Integer id, String Name, String type, Integer age, String gender) {
