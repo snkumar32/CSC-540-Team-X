@@ -15,6 +15,9 @@ public class PublicationUI {
         String topic, title, pub_no, PublicationDate, ISBN, Type, IssueDate, Periodicity, Text, Title;
 
         String[] args;
+        boolean exit_val = true;
+        String[] main_args = null;
+        while (exit_val) {
 
         System.out.println("1. Enter Book information");
         System.out.println("2. Enter Periodic Publication information");
@@ -28,6 +31,7 @@ public class PublicationUI {
         System.out.println("10. Insert Chapters");
         System.out.println("11. Update Chapters");
         System.out.println("12. Delete Chapters");
+        System.out.println("13. Back to Main");
 
         String input = reader.readLine();
 
@@ -88,7 +92,6 @@ public class PublicationUI {
                 Type = args[4];
                 IssueDate = args[5];
                 Periodicity = args[6];
-
                 PublicationCRUD.updatePublication(PID, topic, title, pub_no);
                 PeriodicPublicationCRUD.updatePeriodicPublication(PID, Type, IssueDate, Periodicity);
                 return;
@@ -98,7 +101,6 @@ public class PublicationUI {
                 args = reader.readLine().split("[|]");
                 StaffID = Integer.valueOf(Integer.parseInt(args[0]));
                 PID = Integer.valueOf(Integer.parseInt(args[1]));
-
                 EditsOperation.insertEdits(StaffID, PID);
                 return;
 
@@ -107,6 +109,7 @@ public class PublicationUI {
                 StaffID = Integer.valueOf(Integer.parseInt(reader.readLine()));
 
                 EditsOperation.viewEditorPubInfo(StaffID);
+                System.out.println("Test Publication");
                 return;
 
             case 7:
@@ -115,7 +118,6 @@ public class PublicationUI {
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
                 ArticleID = Integer.valueOf(Integer.parseInt(args[1]));
                 Text = args[2];
-
                 ArticleCRUD.insertArticle(PID, ArticleID, Text);
                 return;
 
@@ -125,7 +127,6 @@ public class PublicationUI {
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
                 ArticleID = Integer.valueOf(Integer.parseInt(args[1]));
                 Text = args[2];
-
                 ArticleCRUD.updateArticle(PID, ArticleID, Text);
                 return;
 
@@ -134,7 +135,6 @@ public class PublicationUI {
                 args = reader.readLine().split("[|]");
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
                 ArticleID = Integer.valueOf(Integer.parseInt(args[1]));
-
                 ArticleCRUD.deleteArticle(PID, ArticleID);
                 return;
 
@@ -144,7 +144,6 @@ public class PublicationUI {
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
                 ChapterID = Integer.valueOf(Integer.parseInt(args[1]));
                 Title = args[2];
-
                 ChapterCRUD.insertChapter(PID, ChapterID, Title);
                 return;
 
@@ -154,7 +153,6 @@ public class PublicationUI {
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
                 ChapterID = Integer.valueOf(Integer.parseInt(args[1]));
                 Title = args[2];
-
                 ChapterCRUD.updateChapter(PID, ChapterID, Title);
                 return;
 
@@ -163,9 +161,13 @@ public class PublicationUI {
                 args = reader.readLine().split("[|]");
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
                 ChapterID = Integer.valueOf(Integer.parseInt(args[1]));
-
                 ChapterCRUD.deleteChapter(PID, ChapterID);
                 return;
+            case 13:
+                Main.main(main_args);
+            default:
+                System.out.println("Enter a valid choice");
+
 
         }
 
@@ -173,3 +175,5 @@ public class PublicationUI {
 
     }
 }
+}
+

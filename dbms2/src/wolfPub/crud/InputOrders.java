@@ -88,19 +88,29 @@ public class InputOrders {
             String query = "update ORDERS set TOTALPAYMENT= ? where OrderID = ?";
 
             PreparedStatement st = conn.prepareStatement(query);
-            String query1 = "select NO_OF_COPIES from CONSISTSOF where OrderID = "+oid2;
+            String query1 = "select NO_OF_COPIES from CONSISTSOF where ORDERID = "+oid2;
+            System.out.println(query1);
+
+
             Integer noc =0;
             ResultSet rs = st.executeQuery(query1);
             while (rs.next()) {
                 noc = rs.getInt("NO_OF_COPIES");
             }
-            String query2 = "select Price from ORDERS where OrderID = "+oid2;
+            System.out.println(noc);
+
+            String query2 = "select Price from ORDERS where ORDERID = "+oid2;
+            System.out.println(query2);
+
             float price_val = 0;
             ResultSet rs2 = st.executeQuery(query2);
             while (rs2.next()) {
                 price_val = rs2.getFloat("Price");
             }
+            System.out.println(price_val);
             float val = noc * price_val;
+
+            System.out.println(val);
 
             st.setFloat(1, val);
             st.setInt(2, oid2);

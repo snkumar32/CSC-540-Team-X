@@ -14,12 +14,13 @@ public class DistributorOperations {
         Float price, shipping_cost, total_pay;
         String placement_date, deadline_date;
         String[] args;
+        String[] main_args = null;
         boolean exit_val = true;
         while(exit_val) {
             System.out.println("1.Input Orders");
             System.out.println("2.Bill a Distributor for Order");
             System.out.println("3.Change Balance of Distributor");
-            System.out.println("4.exit");
+            System.out.println("4.Back to Main");
             String input = reader.readLine();
 
 
@@ -75,9 +76,10 @@ public class DistributorOperations {
                     }
                     return;
                 case 4:
-                    exit_val = false;
-                    return;
+                    Main.main(main_args);
+                default:
 
+                    System.out.println("Enter a valid choice");
 
             }
 

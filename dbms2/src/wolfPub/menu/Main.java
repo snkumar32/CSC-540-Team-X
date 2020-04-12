@@ -1,6 +1,7 @@
 package wolfPub.menu;
 
 import wolfPub.connection.DbConnection;
+import wolfPub.crud.PaymentOperations;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,16 +11,36 @@ import java.sql.*;
 public class Main {
 
     public static void main(String[] args) {
-        do {
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        while (true) {
+            System.out.println("WOLFPUB DB");
+            System.out.println("Menu:");
+            System.out.println("1. ADMIN");
+            System.out.println("2. EDITOR");
+            System.out.println("3. DISTRIBUTOR");
+            System.out.println("4. EXIT");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             try {
-                ReportUI.reportUI(br);
+                String choice = reader.readLine();
+                switch (Integer.parseInt(choice)) {
+                    case 1:
+                        AdminUI.adminUI(reader);
+                        //System.out.println("Test Main-Admin-Publication");
+                        break;
+                    case 4:
+                        System.exit(0);
+                        break;
+
+                }
+                System.out.println("Please enter a valid choice");
             } catch (IOException e) {
-        //28|2020-03-03|2020-03-01|30.0|150.0|450.0
+                e.printStackTrace();
             }
-        }while(true);
+
+        }
     }
-
-
 }
+
+
+
 
