@@ -4,11 +4,12 @@ import wolfPub.dbclasses.Edits;
 
 import java.io.BufferedReader;
 import java.io.*;
+import java.sql.SQLException;
 
 
 public class PublicationUI {
 
-    public static void publicationUI(BufferedReader reader) throws NumberFormatException, IOException{
+    public static void publicationUI(BufferedReader reader) throws NumberFormatException, IOException, SQLException {
 
 
         Integer PID, Edition, StaffID, ArticleID, ChapterID;
@@ -43,8 +44,8 @@ public class PublicationUI {
                 ISBN = args[5];
                 Edition = Integer.valueOf(Integer.parseInt(args[6]));
 
-                PublicationCRUD.insertPublication(PID, topic, title, pub_no);
-                BookCRUD.insertBook(PID, PublicationDate, ISBN, Edition);
+                PublicationCRUD.insertPublication(PID, topic, title, pub_no, PublicationDate, ISBN, Edition);
+//                BookCRUD.insertBook(PID, PublicationDate, ISBN, Edition);
                 return;
 
             case 2:
