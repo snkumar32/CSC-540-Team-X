@@ -121,8 +121,19 @@ public class PublicationCRUD {
             st.setString(3, pub_no);
             st.setInt(4,PID);
             st.executeUpdate();
+
+            ResultSet rs = st.executeQuery("Select count(*) as count_val from PUBLICATION where PID="+PID+"PUB_NO="+pub_no);
+            int count = 0;
+            while (rs.next()) {
+                count = rs.getInt("count_val");
+
+            }
             conn.commit();
-            return Boolean.valueOf(true);
+            if (count!=0){
+                return  true;
+            }
+            return false;
+            //return Boolean.valueOf(true);
         } catch (SQLException e) {
             e.printStackTrace();
             return Boolean.valueOf(false);

@@ -87,8 +87,13 @@ public class PublicationUI {
                 ISBN = args[5];
                 Edition = Integer.valueOf(Integer.parseInt(args[6]));
 
-                PublicationCRUD.updatePublication(PID, topic, title, pub_no);
-                BookCRUD.updateBook(PID, PublicationDate, ISBN, Edition);
+
+                if(PublicationCRUD.updatePublication(PID, topic, title, pub_no) && BookCRUD.updateBook(PID, PublicationDate, ISBN, Edition)){
+                    System.out.println("Operation Sucessful");
+                }else{
+                    System.out.println("Operation Failed");
+                }
+
                 return;
 
 
@@ -102,8 +107,14 @@ public class PublicationUI {
                 Type = args[4];
                 IssueDate = args[5];
                 Periodicity = args[6];
-                PublicationCRUD.updatePublication(PID, topic, title, pub_no);
-                PeriodicPublicationCRUD.updatePeriodicPublication(PID, Type, IssueDate, Periodicity);
+                //PublicationCRUD.updatePublication(PID, topic, title, pub_no);
+                //PeriodicPublicationCRUD.updatePeriodicPublication(PID, Type, IssueDate, Periodicity);
+
+                if(PublicationCRUD.updatePublication(PID, topic, title, pub_no) && PeriodicPublicationCRUD.updatePeriodicPublication(PID, Type, IssueDate, Periodicity)){
+                    System.out.println("Operation Sucessful");
+                }else{
+                    System.out.println("Operation Failed");
+                }
                 return;
 
             case 5:
@@ -173,7 +184,12 @@ public class PublicationUI {
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
                 ArticleID = Integer.valueOf(Integer.parseInt(args[1]));
                 Text = args[2];
-                ArticleCRUD.updateArticle(PID, ArticleID, Text);
+                if (ArticleCRUD.updateArticle(PID, ArticleID, Text)) {
+                    System.out.println("Operation Successful");
+                } else {
+                    System.out.println("Operation Failed");
+                }
+                ;
                 return;
 
             case 11:
@@ -209,7 +225,12 @@ public class PublicationUI {
                 PID = Integer.valueOf(Integer.parseInt(args[0]));
                 ChapterID = Integer.valueOf(Integer.parseInt(args[1]));
                 Title = args[2];
-                ChapterCRUD.updateChapter(PID, ChapterID, Title);
+                if (ChapterCRUD.updateChapter(PID, ChapterID, Title)) {
+                    System.out.println(" Operation Successful");
+                } else {
+                    System.out.println(" Operation Failed");
+                }
+
                 return;
 
             case 14:

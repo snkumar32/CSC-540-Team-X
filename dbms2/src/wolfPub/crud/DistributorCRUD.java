@@ -102,7 +102,19 @@ public class DistributorCRUD {
             st.setFloat(1, balance);
 
             st.executeUpdate();
-            return Boolean.valueOf(true);
+
+            ResultSet rs = st.executeQuery("select count(*) as count_val from DISTRIBUTOR where DID="+did +" and balance="+balance);
+            int staff_id = 0;
+            while (rs.next())
+                staff_id = rs.getInt("COUNT_VAL");
+
+            if(staff_id == 1){
+                return true;
+            }
+            else{
+                return false;
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
             return Boolean.valueOf(false);
