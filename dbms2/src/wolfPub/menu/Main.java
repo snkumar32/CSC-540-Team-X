@@ -35,7 +35,6 @@ public class Main {
                     case 4:
                         System.exit(0);
                         break;
-
                 }
                 System.out.println("Please enter a valid choice");
             } catch (IOException | SQLException e) {

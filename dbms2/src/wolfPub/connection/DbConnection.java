@@ -12,7 +12,7 @@ public class DbConnection {
             String jdbcUrl = ConnVariables.getUrl();
             String user = ConnVariables.getUser();
             String password = ConnVariables.getPassword();
-            System.out.println("Connection about to start");
+            //System.out.println("Connection about to start");
             try {
                 Class.forName("org.mariadb.jdbc.Driver");
                 connection = DriverManager.getConnection(jdbcUrl, user, password);
@@ -21,7 +21,7 @@ public class DbConnection {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            System.out.println("CONN: " + connection);
+            //System.out.println("CONN: " + connection);
             return connection;
         }
 
